@@ -6,7 +6,9 @@ package com.getandlook.module;
 
 public class ImageRequest {
     private String path;
-    private String type;
+    private String typeOfImage;
+    private String typeOfContent;
+    private Integer idOfClient;
 
     public String getPath() {
         return path;
@@ -16,11 +18,27 @@ public class ImageRequest {
         this.path = path;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeOfImage() {
+        return typeOfImage;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeOfImage(String typeOfImage) {
+        this.typeOfImage = typeOfImage;
+    }
+
+    public String getTypeOfContent() {
+        return typeOfContent;
+    }
+
+    public void setTypeOfContent(String typeOfContent) {
+        this.typeOfContent = typeOfContent;
+    }
+
+    public Integer getIdOfClient() {
+        return idOfClient;
+    }
+
+    public void setIdOfClient(Integer idOfClient) {
+        this.idOfClient = idOfClient;
     }
 }

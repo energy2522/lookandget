@@ -9,4 +9,6 @@ import com.getandlook.module.domain.Client;
 public interface ClientDao {
 
     void create(Client client);
+
+    Client findById(Integer id);
 }

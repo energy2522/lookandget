@@ -9,4 +9,7 @@ import com.getandlook.module.domain.ContentOfClient;
 public interface ContentOfClientDao {
 
     void create(ContentOfClient contentOfClient);
+
+    ContentOfClient findByClientAndContent(Integer idOfClient, String typeOfContent);
+
 }

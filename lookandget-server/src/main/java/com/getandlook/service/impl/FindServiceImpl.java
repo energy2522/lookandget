@@ -1,6 +1,9 @@
 package com.getandlook.service.impl;
 
+import com.getandlook.module.dao.interfaces.ClientDao;
 import com.getandlook.module.dao.interfaces.TypeContentDao;
+import com.getandlook.module.domain.Client;
+import com.getandlook.module.domain.ContentOfClient;
 import com.getandlook.module.domain.TypeContent;
 import com.getandlook.service.interfaces.FindService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,9 @@ public class FindServiceImpl implements FindService {
     @Autowired
     private TypeContentDao typeContentDao;
 
+    @Autowired
+    private ClientDao clientDao;
+
     @Override
     public boolean isExistsTypeContent(String name) {
         if (typeContentDao.getByName(name) == null) {
@@ -28,5 +34,15 @@ public class FindServiceImpl implements FindService {
     @Override
     public TypeContent findTypeContentByName(String name) {
         return typeContentDao.getByName(name);
+    }
+
+    @Override
+    public ContentOfClient findContentOfClient(TypeContent typeContent, Client client) {
+        return null;
+    }
+
+    @Override
+    public Client findClientById(Integer id) {
+        return clientDao.findById(id);
     }
 }

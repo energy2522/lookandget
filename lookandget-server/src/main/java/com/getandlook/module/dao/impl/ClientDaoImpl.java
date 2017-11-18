@@ -19,4 +19,9 @@ public class ClientDaoImpl implements ClientDao {
     public void create(Client client) {
         template.save(client);
     }
+
+    @Override
+    public Client findById(Integer id) {
+        return template.get(Client.class, id);
+    }
 }
