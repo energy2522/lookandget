@@ -14,16 +14,18 @@
         <intercept-url pattern="/server/admin" access=""/>
         <intercept-url pattern="/server/user" access="hasRole('ROLE_USER')"/>
 
-        <!--<form-login login-page="/login" default-target-url="/check" authentication-failure-url="/login?error"-->
-                    <!--username-parameter="login" password-parameter="password"/>-->
+        <form-login login-page="/login" default-target-url="/check" authentication-failure-url="/login?error"
+                    username-parameter="username" password-parameter="password"/>
 
         <csrf disabled="true"/>
     </http>
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsServiceImpl"/>
-    </authentication-manager>
+        <authentication-provider user-service-ref="userDetailsServiceImpl">
+            <password-encoder ref="encoder"/>
+        </authentication-provider>
 
+    </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
                 class="com.getandlook.service.security.UserDetailsServiceImpl"></beans:bean>
@@ -32,5 +34,7 @@
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <beans:constructor-arg name="strength" value="11"/>
     </beans:bean>
+
+
 
 </beans:beans>

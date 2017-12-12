@@ -22,7 +22,7 @@ public class ContentOfClient {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_content", nullable = false)
-    private TypeContent typeContent;
+    private TypeContent content;
 
     @Column(name = "most_emotion")
     private String mostEmotion;
@@ -58,10 +58,10 @@ public class ContentOfClient {
         setMapDefault();
     }
 
-    public ContentOfClient(Client client, TypeContent typeContent, String mostEmotion) {
+    public ContentOfClient(Client client, TypeContent content, String mostEmotion) {
         setMapDefault();
         this.client = client;
-        this.typeContent = typeContent;
+        this.content = content;
         this.mostEmotion = mostEmotion;
     }
 
@@ -145,12 +145,12 @@ public class ContentOfClient {
         this.client = client;
     }
 
-    public TypeContent getTypeContent() {
-        return typeContent;
+    public TypeContent getContent() {
+        return content;
     }
 
-    public void setTypeContent(TypeContent typeContent) {
-        this.typeContent = typeContent;
+    public void setContent(TypeContent content) {
+        this.content = content;
     }
 
     public String getMostEmotion() {
@@ -166,20 +166,20 @@ public class ContentOfClient {
     }
 
     public void setMap(Map<String, Double> anotherMap) {
-        for (Map.Entry<String, Double> pair : anotherMap.entrySet()) {
+        for (Map.Entry<String, Double> pair : map.entrySet()) {
             map.put(pair.getKey(), pair.getValue() + anotherMap.get(pair.getKey()));
         }
     }
 
-    private void setMapDefault() {
+    public void setMapDefault() {
         map = new HashMap<>();
-        map.put("contempt", 0d);
-        map.put("surprise", 0d);
-        map.put("happiness", 0d);
-        map.put("neutral", 0d);
-        map.put("sadness", 0d);
-        map.put("disgust", 0d);
-        map.put("anger", 0d);
-        map.put("fear", 0d);
+        map.put("contempt", (contempt == null) ? 0d : contempt);
+        map.put("surprise", (surprise == null )? 0d : surprise);
+        map.put("happiness", (happiness == null)? 0d : happiness);
+        map.put("neutral", (neutral == null) ? 0d : neutral);
+        map.put("sadness", (sadness == null) ? 0d : sadness);
+        map.put("disgust", (disgust == null) ? 0d : disgust);
+        map.put("anger", (anger == null)? 0d : anger);
+        map.put("fear", (fear == null) ? 0d : fear);
     }
 }

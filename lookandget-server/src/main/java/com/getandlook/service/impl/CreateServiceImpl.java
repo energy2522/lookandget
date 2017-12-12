@@ -7,11 +7,9 @@ import com.getandlook.module.dao.interfaces.UserDao;
 import com.getandlook.module.domain.Client;
 import com.getandlook.module.domain.ContentOfClient;
 import com.getandlook.module.domain.TypeContent;
-import com.getandlook.module.dto.ContentOfClientDto;
 import com.getandlook.module.dto.UserDto;
 import com.getandlook.module.image.impl.ImageProcessingByAmazon;
 import com.getandlook.service.interfaces.CreateService;
-import com.getandlook.service.interfaces.FindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +20,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
 /**
  * Created by Володимир Майборода on 30.10.2017.
@@ -60,14 +57,18 @@ public class CreateServiceImpl implements CreateService {
         return true;
     }
 
+    @Transactional
     @Override
     public void createContentFotClient(ContentOfClient contentOfClient) {
         ContentOfClient temp = contentOfClientDao.findByClientAndContent(contentOfClient.getClient().getId(),
-                contentOfClient.getTypeContent().getName());
+                contentOfClient.getContent().getName());
+
 
         if (temp == null) {
+            contentOfClient.setMostEmotion(ImageProcessingByAmazon.getMostEmotion(contentOfClient.getMap()));
             contentOfClientDao.create(contentOfClient);
         } else {
+            temp.setMapDefault();
             temp.setSurprise(temp.getSurprise() + contentOfClient.getSurprise());
             temp.setSadness(temp.getSadness() + contentOfClient.getSadness());
             temp.setNeutral(temp.getNeutral() + contentOfClient.getNeutral());

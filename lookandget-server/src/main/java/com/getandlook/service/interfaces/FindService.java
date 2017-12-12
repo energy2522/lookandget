@@ -4,6 +4,8 @@ import com.getandlook.module.domain.Client;
 import com.getandlook.module.domain.ContentOfClient;
 import com.getandlook.module.domain.TypeContent;
 
+import java.util.List;
+
 /**
  * Created by Володимир Майборода on 31.10.2017.
  */
@@ -17,5 +19,7 @@ public interface FindService {
     ContentOfClient findContentOfClient(TypeContent typeContent, Client client);
 
     Client findClientById(Integer id);
+
+    List<Client> findByUserId();
 
 }

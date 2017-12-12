@@ -17,7 +17,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -64,7 +63,7 @@ public class ImageServiceImpl implements ImageService {
         contentOfClient.setNeutral(allEmotion.get("neutral"));
         contentOfClient.setSadness(allEmotion.get("sadness"));
         contentOfClient.setSurprise(allEmotion.get("surprise"));
-        contentOfClient.setTypeContent(getTypeContent(req.getTypeOfContent()));
+        contentOfClient.setContent(getTypeContent(req.getTypeOfContent()));
         contentOfClient.setClient(client);
         contentOfClient.setMap(allEmotion);
 

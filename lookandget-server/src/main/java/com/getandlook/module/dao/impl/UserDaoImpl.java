@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByUsername(String username) {
-        return (User) DataAccessUtils.uniqueResult(template.find("from user u where u.username = ?",
+        return (User) DataAccessUtils.uniqueResult(template.find("from User u where u.username = ?",
                 username));
 
     }
