@@ -141,13 +141,13 @@
                             <div class="showcase-slider">
                                 <ul class="slides" id="showcaseSlider">
                                     <li>
-                                        <img src="<c:url value="//resources/img/screen1.jpg"/>" alt="Device Content Image">
+                                        <img src="<c:url value="//resources/img/screen11.jpg"/>" alt="Device Content Image">
                                     </li>
                                     <li>
-                                        <img src="<c:url value="//resources/img/screen2.jpg"/>" alt="Device Content Image">
+                                        <img src="<c:url value="//resources/img/screen21.jpg"/>" alt="Device Content Image">
                                     </li>
                                     <li>
-                                        <img src="<c:url value="//resources/img/screen3.jpg"/>" alt="Device Content Image">
+                                        <img src="<c:url value="//resources/img/screen31.jpg"/>" alt="Device Content Image">
                                     </li>
                                 </ul>
                             </div>

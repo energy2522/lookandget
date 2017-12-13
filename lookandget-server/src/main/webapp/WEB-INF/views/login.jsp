@@ -34,8 +34,8 @@
                     <input id="password" name="password" type="password" class="input" data-type="password">
                 </div>
                 <div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    <%--<input id="check" type="checkbox" class="check" checked>--%>
+                    <%--<label for="check"><span class="icon"></span> Keep me Signed in</label>--%>
                 </div>
                 <div class="group">
                     <input type="submit" class="button" value="Sign In">
@@ -73,9 +73,9 @@
                 </div>
                 </form>
                 <div class="hr"></div>
-                <div class="foot-lnk">
+<%--                <div class="foot-lnk">
                     <label for="tab-1">Already Member?</a>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>
