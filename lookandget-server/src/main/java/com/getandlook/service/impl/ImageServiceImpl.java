@@ -9,6 +9,9 @@ import com.getandlook.module.image.interfaces.ImageProcessing;
 import com.getandlook.service.interfaces.CreateService;
 import com.getandlook.service.interfaces.FindService;
 import com.getandlook.service.interfaces.ImageService;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -28,6 +32,7 @@ import java.util.Map;
 @Path("/admin/image")
 @Service
 public class ImageServiceImpl implements ImageService {
+    private static final Logger LOG = LogManager.getLogger(ImageServiceImpl.class);
 
     @Autowired
     private ImageProcessing imageProcessing;
@@ -44,16 +49,18 @@ public class ImageServiceImpl implements ImageService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public Response getEmotionFromPhoto(ImageRequest req) {
+    public Response getEmotionFromPhoto(ImageReq req) {
         ContentOfClient contentOfClient = new ContentOfClient();
         Client client;
-        Map<String, Double> allEmotion = imageProcessing.getEmotionFromImage(req.getPath(), req.getTypeOfImage());
 
-        client = findService.findClientById(req.getIdOfClient());
+        client = findService.findClientById(req.getIdClient());
 
         if (client == null) {
+            LOG.warn("Don't found client with id {}", req.getIdClient());
             return Response.status(Response.Status.EXPECTATION_FAILED).build();
         }
+
+        Map<String, Double> allEmotion = imageProcessing.getEmotionFromImage(convert(req.getImage()));
 
         //set content of client
         contentOfClient.setAnger(allEmotion.get("anger"));
@@ -87,12 +94,11 @@ public class ImageServiceImpl implements ImageService {
         return typeContent;
     }
 
-    @POST
-    @Path("/iot")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public void emotion(ImageReq imageReq) {
-        System.out.println("INTO");
+    public byte[] convert(String encodedString) {
+        LOG.info("Encoded string {}", encodedString);
+        byte[] image = Base64.decodeBase64(encodedString);
+
+        return image;
     }
 
 

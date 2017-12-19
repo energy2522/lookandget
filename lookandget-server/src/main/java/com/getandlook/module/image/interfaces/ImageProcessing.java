@@ -7,6 +7,6 @@ import java.util.Map;
  */
 public interface ImageProcessing {
 
-    Map<String, Double> getEmotionFromImage(String path, String type);
+    Map<String, Double> getEmotionFromImage(byte[] image);
 
 }

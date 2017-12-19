@@ -1,5 +1,6 @@
 package com.getandlook.service.interfaces;
 
+import com.getandlook.module.ImageReq;
 import com.getandlook.module.ImageRequest;
 
 import javax.ws.rs.core.Response;
@@ -10,5 +11,5 @@ import javax.ws.rs.core.Response;
 
 public interface ImageService {
 
-    Response getEmotionFromPhoto(ImageRequest request);
+    Response getEmotionFromPhoto(ImageReq request);
 }

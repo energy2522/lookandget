@@ -35,12 +35,13 @@ public class ImageProcessingByAmazon implements ImageProcessing {
     private static final Logger LOG = LogManager.getLogger(ImageServiceImpl.class);
     private static final String URL = "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize";
     private static final String NAME = "Ocp-Apim-Subscription-Key";
-    private static final String KEY = "1f968aebf77745ab821d7d0557e95323";
+    private static final String KEY = "b35a72181d3f4a188e8a0d3f5f295576";
 
     @Override
-    public Map<String, Double> getEmotionFromImage(String path, String type) {
+    public Map<String, Double> getEmotionFromImage(byte[] image) {
+
         HttpClient httpClient = HttpClientBuilder.create().build();
-        AbstractHttpEntity startEntity;
+        AbstractHttpEntity startEntity = new ByteArrayEntity(image, ContentType.APPLICATION_OCTET_STREAM);
 
         try {
             URIBuilder uriBuilder = new URIBuilder(URL);
@@ -49,15 +50,6 @@ public class ImageProcessingByAmazon implements ImageProcessing {
             HttpPost request = new HttpPost(uri);
 
             request.setHeader(NAME, KEY);
-            if (type.equals("image")) {
-                startEntity = new ByteArrayEntity(getByteArrayByPath(path),
-                        ContentType.APPLICATION_OCTET_STREAM);
-            } else {
-                startEntity = new StringEntity("{ \"url\": \"" + path + "\" }",
-                        ContentType.APPLICATION_JSON);
-
-            }
-
             request.setEntity(startEntity);
 
             HttpResponse response = httpClient.execute(request);
@@ -92,17 +84,6 @@ public class ImageProcessingByAmazon implements ImageProcessing {
         }
 
         return name;
-    }
-
-    //return array of byte from image
-    private byte[] getByteArrayByPath(String pathToImage) throws IOException {
-        File imgPath = new File(pathToImage);
-
-        if (!imgPath.exists()) {
-            throw new FileNotFoundException();
-        }
-
-        return Files.readAllBytes(imgPath.toPath());
     }
 
     //method parses JSONArray and return map with summary emotion
