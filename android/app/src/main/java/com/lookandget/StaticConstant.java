@@ -1,7 +1,6 @@
 package com.lookandget;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,4 +14,6 @@ public class StaticConstant {
         DUMMY_CREDENTIALS.add("energy2522:snaiper5");
         DUMMY_CREDENTIALS.add("admin:admin");
     }
+
+
 }

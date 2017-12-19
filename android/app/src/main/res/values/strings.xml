@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Log in</string>
+    <string name="app_name">lookandget</string>
+    <string name="login_name">Log in</string>
 
     <!-- Strings related to login -->
+    <string name="url_to_server">http://192.168.43.186:8080/lookandget/</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
@@ -11,9 +13,10 @@
     <string name="action_sign_in_short">Sign In</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_username">This username is invalid</string>
+    <string name="error_sign_in">Login or password is wrong</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_invalid_password_repeat">Not the same password</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_incorrect_username">This username is exist</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."

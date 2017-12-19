@@ -1,5 +1,6 @@
 package com.getandlook.service.impl;
 
+import com.getandlook.module.ImageReq;
 import com.getandlook.module.ImageRequest;
 import com.getandlook.module.domain.Client;
 import com.getandlook.module.domain.ContentOfClient;
@@ -84,6 +85,14 @@ public class ImageServiceImpl implements ImageService {
         }
 
         return typeContent;
+    }
+
+    @POST
+    @Path("/iot")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void emotion(ImageReq imageReq) {
+        System.out.println("INTO");
     }
 
 

@@ -216,7 +216,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(username, password);
+            mAuthTask = new UserLoginTask(email, password, username);
             mAuthTask.execute((Void) null);
         }
     }
@@ -334,26 +334,23 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
 
         private final String mEmail;
         private final String mPassword;
+        private final String mUsername;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, String username) {
             mEmail = email;
             mPassword = password;
+            mUsername = username;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+            final String url = getString(R.string.url_to_server) + "android/registration";
 
+            String json = "{ \"username\" : \"" + mUsername + "\",\"password\" : \"" + mPassword + "\", \"email\" : \"" + mEmail + "\"}";
 
-            StaticConstant.DUMMY_CREDENTIALS.add(mEmail + ":" + mPassword);
-            return true;
+            return MainUtils.isSuccessSign(url, json);
+
         }
 
         @Override
@@ -366,8 +363,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
                 intent.putExtra("login", mUsernameView.getText().toString());
                 startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mUsernameView.setError(getString(R.string.error_incorrect_username));
+                mUsernameView.requestFocus();
             }
         }
 

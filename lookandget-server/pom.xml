@@ -203,7 +203,7 @@
 
 
   <build>
-    <finalName>lookandget.com</finalName>
+    <finalName>lookandget</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
